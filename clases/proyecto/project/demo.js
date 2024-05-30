@@ -23,7 +23,6 @@ const escribir = (contenido) => {
         }
         });
 };
-
 const agregar = (contenido) => {
 fs.appendFile(rutaDelArchivoTXT, contenido, (error) => {
     if (error) {
@@ -31,7 +30,6 @@ fs.appendFile(rutaDelArchivoTXT, contenido, (error) => {
     }
     });
 };
-
 const leer = () => {
 fs.readFile(rutaDelArchivoTXT, "utf8" ,(error, result) => {
     if (error) {
@@ -41,20 +39,17 @@ fs.readFile(rutaDelArchivoTXT, "utf8" ,(error, result) => {
     }
 });
 };
-
-// const eliminar = () => {
-// fs.unlink(rutaDelArchivoTXT, (error) => {
-//     if (error) {
-//         console.log("Error al eliminar");
-//     }
-// });
-// };
-
+const eliminar = () => {
+fs.unlink(rutaDelArchivoTXT, (error) => {
+    if (error) {
+        console.log("Error al eliminar");
+    }
+});
+};
 const demo = async() =>{
    await escribir("Hola mundo");
    await agregar("\nBienvenidos");
    await leer();
-//    await eliminar();
+   await eliminar();
 };
-
 demo();
