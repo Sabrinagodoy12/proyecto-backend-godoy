@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node --watch --no-warnings server.js",
     "stop-linux": "killall -9 node",
@@ -12,6 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "moment": "2.30.1"
+    "express": "^4.19.2"
   }
 }
