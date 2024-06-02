@@ -1,27 +1,29 @@
-// HTTP server
-
-//const http = require("http");
-
-// const PORT = 8080;
-// const HOST = "127.0.0.1";
-// const server = http.createServer((request, response) => {
-//     response.setHeader("Content-Type", "text/plain; charset=utf8");
-//     response.end("¡Mi primer hola mundo desde el backend!");
-// });
-
-// server.listen(PORT, () => {
-//     console.log(`Ejecutandose en http://${HOST}:${PORT}`);
-// });
-
 import express from "express";
+import usuarios from "./usuarios.js";
 
-const PORT = 8080;
-const HOST = "127.0.0.1";
 const server = express();
-//Endpoint
-server.get("/saludo", ( req, res) => {
-    res.send("¡Hola a todos, pero ahora desde express!");
+const PORT = 8080;
+const HOST = "localhost";
+
+server.get("/", ( req, res) => {
+    const {genero} = req.query;
+    if(genero) {
+        const usuario = usuarios.find((item) => item.genero === genero?.trim().toUpperCase());
+       
+        if(!usuario){
+            return res.send({"Error": "no se encontró ningún usuario"})
+    }
+    res.send(JSON.stringify(usuarios));
+    }
 });
+
+// server.get("/:userId", ( req, res) => {
+//     const {userId} = req.params;
+//     const usuario = usuarios.find((item) => item.id === Number(userId));
+
+//     console.log(usuario);
+//     res.send(usuario);
+// });
 
 server.listen(PORT, () => {
     console.log(`Ejecutandose en http://${HOST}:${PORT}`);
