@@ -32,22 +32,33 @@ server.get("/api/usuarios/:id", ( req, res) => {
     }
 );
 
-server.get("/api/usuarios", ( req, res) => {
+server.post("/api/usuarios", ( req, res) => {
     const { id, nombre, apellido, edad, correo, genero } = req.body;
 
         if(!nombre || !apellido || !edad || !correo || !genero){
             return res.status(400).send({"Error": "Faltan datos"});
     }
-    const usuarioNuevo = { id, nombre, apellido, edad, correo, genero};
+    const usuarioNuevo = { id: Number(id), nombre, apellido, edad, correo, genero};
     usuario.push(usuarioNuevo);
 
-   res.status(200).send({data: usuarioNuevo});
+   res.status(201).send({data: usuarioNuevo});
     }
 );
+server.delete("/api/usuarios/:id", ( req, res) => {
+    const {id} = req.params;
+    const indice = usuarios.findIndex((item) => item.id === Number(id));
 
-// server.update("/", ()=>{
+    if(indice < 0){
+        return res.status(400).send({"Error": "no se encontró ningún usuario"});
+    }
+    usuarios.splice(indice, 1);
+    res.status(200).send({data: "Usuario eliminado"});
+});
 
-// });
+server.use("*", (req, res) => {
+    return res.status(404).send("<h1>Error</h1> <p>No se ha encontrado el recurso</p>");
+
+})
 
 server.listen(PORT, () => {
     console.log(`Ejecutandose en http://${HOST}:${PORT}`);
