@@ -1,25 +1,3 @@
-// class productsManager {
-//     static products = [];
-//     #crypto;
-//     #algorithn;
-//     #key;
-//     #vi;
-
-//     constructor(){
-//         this.#crypto = require("crypto");
-//         this.#algorithn = "AES-128-CBC";
-//         this.#key = "misProductoSelec";
-//         this.#vi = this.#crypto.randomBytes(16);
-//     }
-//     encriptar = (texto) => {
-//         const cifrador = this.#crypto.createCipheriv(this.#algorithn, this.#key, this.#vi);
-
-//         let textoEncriptado = cifrador.update(texto, "utf8", "hex");
-//         textoEncriptado = cifrador.final("hex");
-
-//         return textoEncriptado
-//     }
-// }
 const generateId = () => {
     const number = Math.floor(Math.random()* 100000);
     const albs = [...'abcdefghijklmnopqrstuvwxyz'];

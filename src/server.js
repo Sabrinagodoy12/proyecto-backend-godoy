@@ -19,3 +19,5 @@ server.use("/api/products", productsRouter);
 server.listen(PORT, () => {
     console.log(`Ejecutandose en http://${HOST}:${PORT}`);
 });
+
+
