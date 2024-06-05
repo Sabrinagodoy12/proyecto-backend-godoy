@@ -8,7 +8,19 @@
 </head>
 
 <body>
-    <h1>Hola Mundo</h1>
+    <h1>Productos</h1>
+
+    <form action="/api/products" method="POST">
+        <div>
+            <label for="title">Título</label>
+            <input type="text" name="title" id="title">
+        </div>
+        <div>
+            <label for="description">Descripción</label>
+            <input type="text" name="description" id="description">
+        </div>
+        <input type="submit" value="Guardar">
+    </form>
 </body>
 
 </html>
