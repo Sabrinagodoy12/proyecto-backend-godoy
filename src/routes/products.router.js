@@ -1,20 +1,20 @@
 import { Router } from "express";
+import products from "../products.js";
 
 const router = Router();
-const products = [];
 
 router.get("/", (req, res) => {
     res.status(200).send({state: "success", data: products});
 });
 
-router.get("/api/products/:id", ( req, res) => {
+router.get("/api/products/:pid", ( req, res) => {
     const { id } = req.params;
-    const product = products.find((item) => item.id === Number(id));
+    const products = products.find((item) => item.id === Number(id));
 
-        if(!product){
+        if(!products){
             return res.status(400).send({"Error": "no se encontró ningún producto"});
     }
-   res.status(200).send({data: product});
+   res.status(200).send({data: products});
     }
 );
 
@@ -22,7 +22,10 @@ router.post("/", (req, res) => {
     const {id, title, description, code, price, status, stock, category, thumbnails} = req.body;
     const newProduct = {id: Number(id), title, description, code, price, status, stock, category, thumbnails}
 
-    users.push(newProduct);
+    if(!title || !description|| !code || !price || !status || !category){
+        return res.status(400).send({"Error": "Faltan datos"});
+}
+    products.push(newProduct);
 
     res.status(201).redirect("http://localhost:8080/public/") ;
 });
