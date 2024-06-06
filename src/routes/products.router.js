@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
     const {id, title, description, code, price, status, stock, category, thumbnails} = req.body;
     const newProduct = {id: Number(id), title, description, code, price, status, stock, category, thumbnails}
 
-    if(!title || !description|| !code || !price || !status || !category){
+    if(!title || !description|| !code || !price || !category){
         return res.status(400).send({"Error": "Faltan datos"});
 }
     products.push(newProduct);
