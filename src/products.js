@@ -1,18 +1,18 @@
 const generateId = () => {
     const number = Math.floor(Math.random()* 100000);
-    const albs = [...'abcdefghijklmnopqrstuvwxyz'];
-    let stringPart = '';
+    const albs = [..."abcdefghijklmnopqrstuvwxyz"];
+    let stringPart = "";
 
     for( let i=0; i<10; i++){
         const index = randomIndex(25);
-        stringPart += albs[index]
+        stringPart += albs[index];
     }
     const id = stringPart+number;
     return id;
-}
+};
 const randomIndex = (maxNumber) => {
-    return Math.floor(Math.random()*maxNumber)
-}
+    return Math.floor(Math.random()*maxNumber);
+};
 
 const products = [
     {
@@ -50,6 +50,6 @@ const products = [
         code: "plato12",
         status: "True",
         category: "Platos",
-    }
+    },
 ];
 export default products;
