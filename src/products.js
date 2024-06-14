@@ -23,6 +23,7 @@ const products = [
         code: "taza12",
         status: "True",
         category: "Tazas",
+        role: "admin",
     },
     {
         id:generateId(),
@@ -32,6 +33,7 @@ const products = [
         code: "taza13",
         status: "True",
         category: "Tazas",
+        role: "user",
     },
     {
         id:generateId(),
@@ -41,6 +43,7 @@ const products = [
         code: "bowl12",
         status: "True",
         category: "Bowls",
+        role: "admin",
     },
     {
         id:generateId(),
@@ -50,6 +53,7 @@ const products = [
         code: "plato12",
         status: "True",
         category: "Platos",
+        role: "user",
     },
 ];
 export default products;

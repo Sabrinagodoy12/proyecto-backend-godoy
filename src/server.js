@@ -1,26 +1,32 @@
 import express from "express";
-import handlebars from "express-handlebars";
-import path from "./utils/path.js";
-// import cartsRouter from "./routes/carts.router.js";
-import productsRouter from "./routes/products.router.js";
+import paths from "./utils/path.js";
+import products from "./products.js";
+import homeRouter from "./routes/home.router.js";
+import serverSocketIO from "./config/socket.config.js";
+import configHandlebars from "./config/handlebars.config.js";
 
 const PORT = 8080;
 const HOST = "localhost";
 const server = express();
 
-// server.use(express.json());
-// server.use(express.urlencoded({extended: true}));
-
-server.use("/api/public", express.static(path.public));
-
 //Configuración de handlebars
-server.engine("handlebars", handlebars.engine());
-server.set("views", path.views);
-server.set("engine views", "handlebars");
+configHandlebars.config(server);
 
-// server.use("/api/carts", cartsRouter);
-server.use("/api/products", productsRouter);
+server.use("/api/public", express.static(paths.public));
 
-server.listen(PORT, () => {
+server.use("/home", homeRouter);
+
+//Endpoint de productos
+server.get("/api/products", (req, res) => {
+    const randomID = Math.floor(Math.random() * products.length);
+    const product = products[randomID];
+
+    res.render("products", { title: "productos", product });
+});
+
+const serverHTTP = server.listen(PORT, () => {
     console.log(`Ejecutandose en http://${HOST}:${PORT}`);
 });
+
+//Configuración del servidor de websocket
+serverSocketIO.config(serverHTTP);
